@@ -1,0 +1,33 @@
+int coinChange(vector<int>& coins, int n) {
+        
+        sort(coins.begin(),coins.end());
+        int m = coins.size();
+        
+        int s[n+1];
+
+        s[0] = 0;
+
+
+        for(int i=1;i<=n;i++)
+        {
+            int temp = 1000000;
+            int j = 0;
+            while( j<m && coins[j]<= i)
+            {
+                temp = min( s[i - coins[j]] , temp);
+                j++;
+            }
+            s[i] = temp + 1;
+
+        }
+
+        if(s[n] > 100000)
+        {
+            return -1;
+        }
+        else
+        {
+            return s[n];
+        }
+
+    }
