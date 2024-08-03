@@ -1,0 +1,25 @@
+int jump(vector<int>& nums) {
+
+        int n = nums.size();
+
+        int s[n];
+        for(int i=1;i<n;i++)
+        {
+            s[i] = 100000;
+        }
+
+        s[0] = 0;
+
+        for(int i=0;i<n-1;i++)
+        {
+            int j = 0;
+            while( (i+j) < n && j<=nums[i])
+            {
+                s[i+j] = min(s[i+j] , s[i] + 1);
+                j++;
+            }
+        }
+
+        return s[n-1];
+        
+    }
